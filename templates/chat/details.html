@@ -34,7 +34,7 @@
                 <div class="d-flex flex-column align-items-center text-center">
                     {% set pp_url =  api_base_url ~ '/accounts/profilepic/' ~  user_data['id'] %}
                     <a href= "#" data-toggle="modal" data-target="#profilepic" onclick="populateImageModal()">
-                    <img id= "profilePicture" src= "" alt="Admin" class="rounded-circle" width="150px">
+                    <img id= "profilePicture" src= "" alt="{{url_for('static', filename='auth/profilepic.png')}}" class="rounded-circle" width="150px">
                     </a>                    
                     <div class="mt-3">
                     <h4>{{ user_data['name'] }}</h4>
@@ -125,7 +125,7 @@
         <div class="modal-body">
             {% set pp_url = api_base_url ~ '/accounts/profilepic/' ~  user_data['id'] %}
             <div id= ProfilePicArea>
-                <img id= "profileImage" src= "" alt="Admin" class="rounded-circle" width="100%">
+                <img id= "profileImage" src= "" alt="{{url_for('static', filename='auth/profilepic.png')}}" class="rounded-circle" width="100%">
             </div>
             {% if mode == 'self'  %}
                 <label for="myfile">Select a new picture:</label>
