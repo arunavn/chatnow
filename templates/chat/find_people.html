@@ -1,0 +1,40 @@
+{% extends "chat/chat_base.html" %}
+{% block styles %}
+ {{ super() }}
+{% endblock %}
+{% block navbar  %}
+    <nav  id= "topNav" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href={{url_for('chat.chats')}}>
+                        <span class= "glyphicon glyphicon-menu-left"></span>
+                        <span class= "glyphicon glyphicon-menu-left"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
+{% block content %}
+    <span></br></br></br></br></span>
+    <div class="container">
+        <div class="input-group">
+            <input id= "filterString" type="text" class="form-control" placeholder="Search new people">
+            <div class="input-group-btn">
+                <button id="addChat" class="btn btn-default" type="action" onclick="findPeople()">
+                <i class="glyphicon glyphicon-search"></i>
+                Find new people</button>
+            </div>
+            </div>
+        <div id="peopleArea">
+                
+        </div>
+    </div> 
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{{url_for('static', filename='chat/find_people.js')}}"></script>
+{{super()}}
+{% endblock %}

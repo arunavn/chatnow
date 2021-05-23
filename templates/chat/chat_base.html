@@ -1,0 +1,61 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title%}
+    Chatnow-{{page}}
+{% endblock %}
+{% block navbar  %}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="#">Chatnow</a>
+      </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                {% if page == "chats" %}
+                    <li class="active"><a href="#">Chats</a></li>
+                {% else %}
+                    <li><a href={{url_for('chat.chats')}}>Chats</a></li>
+                {% endif %}
+
+                {% if page == "details" %}
+                    <li class="active"><a href="#">Personal details</a></li>
+                {% else %}
+                    {% set id = user_data['id'] %}
+                    <li><a href={{ url_for('chat.details', foruser=id ) }}>Personal details</a></li>
+                {% endif %}
+
+                {% if page == "settings" %}
+                    <li class="active"><a href="#">Settings</a></li>
+                {% else %}
+                    <li><a href={{url_for('chat.settings')}}>Settings</a></li>
+                {% endif %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href={{url_for('auth.logout')}}><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+    {% with messages = get_flashed_messages( with_categories = true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+        <div class="container alert alert-{{category}} alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <span>{{message}}</span>
+        </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+{% endblock %}
+{% block page %}
+
+{% endblock %}
+

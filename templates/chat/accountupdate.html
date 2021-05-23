@@ -1,0 +1,52 @@
+{% extends "chat/chat_base.html" %}
+{% block navbar  %}
+<nav  id= "topNav" class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href= "javascript:history.back()">
+                    <span class= "glyphicon glyphicon-menu-left"></span>
+                    <span class= "glyphicon glyphicon-menu-left"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+{% endblock %}
+{% block content %}
+  <div class= container>
+    <form method=post>
+        <div class= "form-group">
+            {% if func == 'changepass' %}  
+                <dl>
+                    {{ wtf.form_field(form.password) }}
+                    {{ wtf.form_field(form.newpassword) }}
+                    {{ wtf.form_field(form.cnfpassword) }}    
+                </dl>
+                <p><input class="btn btn-primary" type=submit value="Change password">
+            {% elif func == 'changeemail' %}  
+                <dl>
+                    {{ wtf.form_field(form.password) }}
+                    {{ wtf.form_field(form.email) }} 
+                </dl>
+                <p><input class="btn btn-primary" type=submit value="Change email">
+            {% else %}  
+                <dl>
+                    {{ wtf.form_field(form.name) }}
+                    {{ wtf.form_field(form.phone) }} 
+                    {{ wtf.form_field(form.about) }}
+                </dl>
+                <p><input class="btn btn-primary" type=submit value="Update details">
+            {% endif %}
+        </div>
+    </form>
+  </div>
+
+{% endblock %}
+
+{% block scripts %}
+  {% if func != 'changepass' and func != 'changeemail' %}
+    <script src="{{url_for('static', filename='chat/accountupdate.js')}}"></script>
+  {% endif %}
+  {{super()}}
+{% endblock %}

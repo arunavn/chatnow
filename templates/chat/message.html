@@ -1,0 +1,64 @@
+{% extends "bootstrap/base.html" %}
+{% block styles %}
+ {{ super() }}
+ <link href="{{url_for('static', filename='chat/message.css')}}" rel="stylesheet">
+{% endblock %}
+{% block navbar  %}
+<nav  id= "topNav" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="javascript:history.back()">
+                    <span class= "glyphicon glyphicon-menu-left"></span>
+                    <span class= "glyphicon glyphicon-menu-left"></span>
+                </a>
+            </li>
+            <li>
+                {% set pp_url = api_base_url ~ '/accounts/profilepic/' ~ touser['id'] %}
+                <a href={{ url_for('chat.details', foruser=touser['id'] ) }}>
+                    <img src= "{{ pp_url }}" alt="Admin" class="rounded-circle" width="60">
+                    <span> {{ touser['name'] }}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<nav id= "bottomNav" class="navbar navbar-inverse navbar-fixed-bottom">
+    <div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <button id="attach" class="btn-lg" type="action">
+                        <i class="glyphicon glyphicon-paperclip"></i>
+                        </button>
+                    </div>
+                    <textarea id="textArea" class="form-control type_msg" placeholder="Type your message..." onkeyup= "on_input(this, event)"></textarea>
+                    <div class="input-group-btn">
+                        <button id="sendMsg" class="btn-lg" type="action" onclick="on_send()">
+                        <i class="glyphicon glyphicon-send"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+{% endblock %}
+
+{% block content %}
+    <audio id="xyz" src="{{url_for('static', filename='chat/tone3.mp3')}}" preload="auto"></audio>
+    <div id= "messageArea"class="container-fluid">
+        
+        
+        
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{url_for('static', filename='chat/message.js')}}"></script>
+{{super()}}
+{% endblock %}
+

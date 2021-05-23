@@ -1,0 +1,14 @@
+{% extends "auth/auth_base.html" %}
+{% block page%}
+  {% block content %}
+  <div class= "container">
+      <form method=post>
+        <dl>
+          {{ wtf.form_field(form.email) }}
+          {{ wtf.form_field(form.trouble) }}
+        </dl>
+        <p><input class="btn btn-primary" type=submit value=Submit>
+      </form>
+  </div>>
+  {% endblock %}
+{% endblock %}

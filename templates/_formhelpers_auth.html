@@ -1,0 +1,10 @@
+{% macro render_field(field) %}
+  <span>{{ field.label }}
+  <span class= form-control>{{ field(**kwargs)|safe }}</span>
+  {% if field.errors %}
+    <small class="form-text text-muted ">
+        {{ field.errors[0] }}
+    </small>
+  {% endif %}
+    <br></span>
+{% endmacro %}

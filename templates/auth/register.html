@@ -1,0 +1,21 @@
+{% extends "auth/auth_base.html" %}
+{% block page%}
+  {% block content %}
+  <div class= container>
+    <form method=post>
+        <div class= "form-group">
+            <dl>
+              {{ wtf.form_field(form.userid) }}
+              {{ wtf.form_field(form.email) }}
+              {{ wtf.form_field(form.name) }}
+              {{ wtf.form_field(form.profilePic) }}
+              {{ wtf.form_field(form.about) }}
+              {{ wtf.form_field(form.phone) }}
+              {{ wtf.form_field(form.accept_tos) }}
+            </dl>
+            <p><input class="btn btn-primary" type=submit value=Register>
+        </div>
+    </form>
+  </div>
+  {% endblock %}
+{% endblock %}
