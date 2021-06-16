@@ -1,1 +1,1 @@
-# chatnow
+# chatnow app
